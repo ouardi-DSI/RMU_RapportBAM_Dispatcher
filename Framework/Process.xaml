@@ -1,0 +1,1253 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ucad="clr-namespace:UiPath.Core.Activities.DateModifications;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_TableLoanDeposit" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_Repo" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_Resale" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_MID" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_VALOBTBKT" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_IRSOnShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_chemin_Input" Type="InArgument(x:String)" />
+    <x:Property Name="in_NomFichier_Nada_1" Type="InArgument(x:String)" />
+    <x:Property Name="in_NomFichier_Nada_2" Type="InArgument(x:String)" />
+    <x:Property Name="in_NomFichier_B_MO" Type="InArgument(x:String)" />
+    <x:Property Name="in_NomFichier_C_MO" Type="InArgument(x:String)" />
+    <x:Property Name="in_NomFichier_MO_Bonds_OffShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_BondsTOS" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_SwapOFFSHORE" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_RepoOffShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_Table_OPCVM_OffShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_NomFichier_MO_EquityOffShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_Chemin_Calendrier" Type="InArgument(x:String)" />
+    <x:Property Name="in_Nom_FichierBAM" Type="InArgument(x:String)" />
+    <x:Property Name="in_TableEquitiesOnShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pattern_PV_Repo_OnShore" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pattern_PV_PretEpruntOnshore" Type="InArgument(x:String)" />
+    <x:Property Name="in_Pattern_PV_Pret_OffShore" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Process.in_TableLoanDeposit>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_TableLoanDeposit>
+  <this:Process.in_Table_Repo>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_Repo>
+  <this:Process.in_Table_Resale>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_Resale>
+  <this:Process.in_Table_MID>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_MID>
+  <this:Process.in_Table_VALOBTBKT>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_VALOBTBKT>
+  <this:Process.in_Table_IRSOnShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_IRSOnShore>
+  <this:Process.in_NomFichier_Nada_1>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_NomFichier_Nada_1>
+  <this:Process.in_NomFichier_Nada_2>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_NomFichier_Nada_2>
+  <this:Process.in_NomFichier_B_MO>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_NomFichier_B_MO>
+  <this:Process.in_NomFichier_C_MO>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_NomFichier_C_MO>
+  <this:Process.in_NomFichier_MO_Bonds_OffShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_NomFichier_MO_Bonds_OffShore>
+  <this:Process.in_Table_BondsTOS>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_BondsTOS>
+  <this:Process.in_Table_SwapOFFSHORE>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_SwapOFFSHORE>
+  <this:Process.in_Table_RepoOffShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_RepoOffShore>
+  <this:Process.in_Table_OPCVM_OffShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Table_OPCVM_OffShore>
+  <this:Process.in_NomFichier_MO_EquityOffShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_NomFichier_MO_EquityOffShore>
+  <this:Process.in_Chemin_Calendrier>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Chemin_Calendrier>
+  <this:Process.in_Nom_FichierBAM>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Nom_FichierBAM>
+  <this:Process.in_TableEquitiesOnShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_TableEquitiesOnShore>
+  <this:Process.in_Pattern_PV_Repo_OnShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Pattern_PV_Repo_OnShore>
+  <this:Process.in_Pattern_PV_PretEpruntOnshore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Pattern_PV_PretEpruntOnshore>
+  <this:Process.in_Pattern_PV_Pret_OffShore>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Process.in_Pattern_PV_Pret_OffShore>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>818.4,454.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="50">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Core.Activities.DateModifications</x:String>
+      <x:String>UiPath.Activities.System.Workflow.Business</x:String>
+      <x:String>System.Globalization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.MetadataLoadContext</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1836,4159" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="DataBaseConnection" />
+      <Variable x:TypeArguments="x:Int32" Name="Count_BondsOnShore" />
+      <Variable x:TypeArguments="x:Int32" Name="Count_Resale" />
+      <Variable x:TypeArguments="x:Int32" Name="Count_Repo" />
+      <Variable x:TypeArguments="x:Int32" Name="Count_LoanDeposit" />
+      <Variable x:TypeArguments="x:String" Name="Traitement_A_Faire">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Name="DT_Calendrier" />
+      <Variable x:TypeArguments="x:String" Name="Mois_FR" />
+      <Variable x:TypeArguments="x:String" Name="Annee" />
+      <Variable x:TypeArguments="x:String" Name="Date_JJ_MM_YYYY" />
+      <Variable x:TypeArguments="x:String" Name="LastWorkingDay_Of_Month" />
+      <Variable x:TypeArguments="s:DateTime" Name="LastDAy_Of_Month" />
+      <Variable x:TypeArguments="x:String" Name="Date_JJMMYY" />
+      <Variable x:TypeArguments="x:String" Name="Chemin_Fichier_B" />
+      <Variable x:TypeArguments="x:String" Name="Chemin_Fichier_C" />
+      <Variable x:TypeArguments="x:String" Name="Date_JJMMYY_Withspace" />
+      <Variable x:TypeArguments="x:String" Name="Chemin_Fichier_ClotureBondsOffShore" />
+      <Variable x:TypeArguments="x:String" Name="Chemin_Fichier_ClotureEquityOffShore" />
+      <Variable x:TypeArguments="x:String" Name="Nom_Fichier_BAM" />
+      <Variable x:TypeArguments="x:String" Name="Date_MoisAA" />
+      <Variable x:TypeArguments="x:String" Name="Nom_Support281" />
+      <Variable x:TypeArguments="x:String" Name="Nom_SpotTerme282" />
+      <Variable x:TypeArguments="x:String" Name="Nom_StressTest" />
+      <Variable x:TypeArguments="x:String" Name="Nom_FichierB" />
+      <Variable x:TypeArguments="x:String" Name="Nom_SupportOffShore" />
+      <Variable x:TypeArguments="x:String" Name="Chemin_Fichier_FWDAll" />
+      <Variable x:TypeArguments="x:String" Name="Chemin_SpotAll" />
+      <Variable x:TypeArguments="x:String" Name="CHemin_PV_RepoOnShore" />
+      <Variable x:TypeArguments="x:String" Name="CHemin_PV_PretEmpruntOnShore" />
+      <Variable x:TypeArguments="x:String" Name="CHemin_PV_PretOffShore" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="468,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <Sequence DisplayName="Calcul date execution" sap:VirtualizedContainerService.HintSize="468,2540" sap2010:WorkflowViewState.IdRef="Sequence_18">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="Date_JJMM" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ReadRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[DT_Calendrier]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" Range="A1" SheetName="Calendrier" WorkbookPath="[in_Chemin_Calendrier]" />
+      <If Condition="[Today.Day&lt;27]" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="If_9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_24">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Year_LastDay" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ModifyDate CustomDateFormat="{x:Null}" OutText="{x:Null}" DisplayName="Modify Date" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ModifyDate_3" OutDate="[LastDay_Of_Month]" SourceDate="[Today.AddMonths(-1)]">
+              <ui:ModifyDate.Body>
+                <ActivityAction>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ucad:FindStartEndDateModification DisplayName="Find Start/End of Week/Month/Year" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="FindStartEndDateModification_3" Location="LastDay" TimeUnit="Month" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ModifyDate.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ModifyDate>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ModifyDate CustomDateFormat="{x:Null}" OutText="{x:Null}" DisplayName="Modify Date" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="ModifyDate_4" OutDate="[LastDay_Of_Month]" SourceDate="[Today]">
+              <ui:ModifyDate.Body>
+                <ActivityAction>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ucad:FindStartEndDateModification DisplayName="Find Start/End of Week/Month/Year" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="FindStartEndDateModification_4" Location="LastDay" TimeUnit="Month" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ModifyDate.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ModifyDate>
+          </Sequence>
+        </If.Else>
+      </If>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[LastWorkingDay_Of_Month]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[DT_Calendrier.AsEnumerable.LastOrDefault(function(r) Datetime.ParseExact(r(0).toString.replace(" 00:00:00",""),"MM/dd/yyyy",System.Globalization.CultureInfo.InvariantCulture) &lt;= LastDay_Of_Month and r(1).ToString.trim.Equals("Ouvrable"))(0).ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Date_JJ_MM_YYYY]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(LastWorkingDay_Of_Month.replace(" 00:00:00","").trim,"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).tostring("dd/MM/yyyy")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_13">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Date_JJMMYY]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(LastWorkingDay_Of_Month.replace(" 00:00:00","").trim,"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).tostring("ddMMyy")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_21">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Date_JJMM]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(LastWorkingDay_Of_Month.replace(" 00:00:00","").trim,"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).tostring("dd-MM")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_15">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Date_JJMMYY_Withspace]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(LastWorkingDay_Of_Month.replace(" 00:00:00","").trim,"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).tostring("dd MM yy")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Mois_FR]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[DateTime.ParseExact(LastWorkingDay_Of_Month.replace(" 00:00:00","").trim,"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture).tostring("MMMM",new system.Globalization.CultureInfo("fr-FR"))]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_10">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Annee]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[LastDAy_Of_Month.Year.ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_12">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Chemin_Fichier_B]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+"\"+in_NomFichier_B_MO.Replace("ddMMYY",Date_JJMMYY)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_14">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Chemin_Fichier_C]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee +"\"+in_NomFichier_C_MO.Replace("ddMMYY",Date_JJMMYY)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_16">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Chemin_Fichier_ClotureBondsOffShore]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee +"\"+in_NomFichier_MO_Bonds_OffShore.Replace("ddMMyy",Date_JJMMYY)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_17">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Chemin_Fichier_ClotureEquityOffShore]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee +"\"+in_NomFichier_MO_EquityOffShore.Replace("ddMMyy",Date_JJMMYY)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_18">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Nom_Fichier_BAM]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Nom_FichierBAM.Replace("MMM YYYY",Mois_FR+" "+Annee)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_19">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Date_MoisAA]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Mois_FR +" "+Annee]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_20">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Nom_Support281]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Support "+Date_JJMM+".xlsx"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_22">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Nom_SpotTerme282]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Spot-termes "+Date_JJMM+".xlsx"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_23">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Nom_StressTest]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["Stress_tests "+Date_JJMM+".xls"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_24">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Nom_FichierB]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["B_"+Date_JJMM+".xls"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_25">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Nom_SupportOffShore]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["support-offshore "+Date_JJMM+".xlsx"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_26">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Chemin_Fichier_FWDAll]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee +"\"+in_NomFichier_Nada_1.Replace("ddMMyy",Date_JJMMYY)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_27">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Chemin_SpotAll]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee +"\"+in_NomFichier_Nada_2.Replace("ddMMyy",Date_JJMMYY)]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Connexion_DataBase - Invoke Workflow File (Connexion_DataBase.xaml)" sap:VirtualizedContainerService.HintSize="468,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Connexion_DataBase.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="ui:DatabaseConnection" x:Key="out_DataBaseConnection">[DataBaseConnection]</OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <Sequence DisplayName="vérification prérequis Etat281" sap:VirtualizedContainerService.HintSize="468,57" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="Count_MID" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_VALOBTBKT" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_IRSOnShore" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,228" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_BondsOnShore]</InArgument>
+                <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_BondsOnShore]</OutArgument>
+                <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[in_Date_JJMMYYYY]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_TableLoanDeposit]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_LoanDeposit]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_Repo]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_Repo]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_Resale]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_Resale]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_MID]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_MID]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_VALOBTBKT]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_VALOBTBKT]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_IRSOnShore]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_IRSOnShore]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <If Condition="[Count_LoanDeposit&gt;0 and Count_MID&gt;0 and Count_Repo&gt;0 and Count_Resale&gt;0 and Count_IRSOnShore&gt;0 and Count_VALOBTBKT&gt;0]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT281").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="vérification prérequis Etat281_PV" sap:VirtualizedContainerService.HintSize="468,613" sap2010:WorkflowViewState.IdRef="Sequence_27">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="FIchier_PV_RepoOnShore_Existe" />
+        <Variable x:TypeArguments="s:String[]" Name="List_CHemin_PV_PretEmpruntOnShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="FIchier_PV_PretEmprunt_Existe" />
+        <Variable x:TypeArguments="s:String[]" Name="List_CHemin_PV_RepoOnShore" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_28">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[List_CHemin_PV_RepoOnShore]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee+"\PV",in_Pattern_PV_Repo_OnShore)]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <If Condition="[List_CHemin_PV_RepoOnShore.count.equals(0)]" sap:VirtualizedContainerService.HintSize="434,188" sap2010:WorkflowViewState.IdRef="If_11">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_28">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_29">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[FIchier_PV_RepoOnShore_Existe]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_36">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CHemin_PV_RepoOnShore]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_29">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_30">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[FIchier_PV_RepoOnShore_Existe]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_35">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CHemin_PV_RepoOnShore]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[List_CHemin_PV_RepoOnShore(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_31">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[List_CHemin_PV_PretEmpruntOnShore]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee+"\PV",in_Pattern_PV_PretEpruntOnshore)]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <If Condition="[List_CHemin_PV_PretEmpruntOnShore.count.equals(0)]" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="If_12">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,25" sap2010:WorkflowViewState.IdRef="Sequence_30">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_32">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[FIchier_PV_PretEmprunt_Existe]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_37">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CHemin_PV_PretEmpruntOnShore]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,279" sap2010:WorkflowViewState.IdRef="Sequence_31">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_33">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[FIchier_PV_PretEmprunt_Existe]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_38">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CHemin_PV_PretEmpruntOnShore]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[List_CHemin_PV_PretEmpruntOnShore(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <If Condition="[FIchier_PV_PretEmprunt_Existe and FIchier_PV_RepoOnShore_Existe]" sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="If_13">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_32">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_34">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT281_PV").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_33">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="vérification prérequis Etat282" sap:VirtualizedContainerService.HintSize="468,57" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="Count_MID" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_VALOBTBKT" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_IRSOnShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier1_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier2_Existe" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:FileExistsX DisplayName="File Exists" Exists="[Fichier1_Existe]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_chemin_Input.TrimEnd(&quot;\&quot;c)+&quot;\&quot;+Mois_FR+&quot; &quot; + Annee +&quot;\&quot;+in_NomFichier_Nada_1.Replace(&quot;ddMMyy&quot;,Date_JJMMYY)]" />
+      <ui:FileExistsX DisplayName="File Exists" Exists="[Fichier2_Existe]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_2" Path="[in_chemin_Input.TrimEnd(&quot;\&quot;c)+&quot;\&quot;+Mois_FR+&quot; &quot; + Annee +&quot;\&quot;+in_NomFichier_Nada_2.Replace(&quot;ddMMyy&quot;,Date_JJMMYY)]" />
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">282</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_MID]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_MID]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <If Condition="[Fichier1_Existe and Fichier2_Existe and Count_MID&gt;0]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT282").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="vérification prérequis Etat283" sap:VirtualizedContainerService.HintSize="468,57" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="Count_MID" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_VALOBTBKT" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_IRSOnShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier1_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier2_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_OnShore_Existe" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_EquitiesOnShore" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">281</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_TableEquitiesOnShore]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_EquitiesOnShore]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <If Condition="[Count_EquitiesOnShore&gt;0]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT283").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="vérification prérequis Etat285" sap:VirtualizedContainerService.HintSize="468,57" sap2010:WorkflowViewState.IdRef="Sequence_12">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="Count_MID" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_VALOBTBKT" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_IRSOnShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier1_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier2_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_OnShore_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_B_MO_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_C_MO_Existe" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:FileExistsX DisplayName="File Exists" Exists="[FichierEquitis_B_MO_Existe]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_5" Path="[Chemin_Fichier_B]" />
+      <ui:FileExistsX DisplayName="File Exists" Exists="[FichierEquitis_C_MO_Existe]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_6" Path="[Chemin_Fichier_C]" />
+      <If Condition="[FichierEquitis_C_MO_Existe and FichierEquitis_B_MO_Existe]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT285").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="vérification prérequis Etat288" sap:VirtualizedContainerService.HintSize="468,57" sap2010:WorkflowViewState.IdRef="Sequence_15">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="Count_MID" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_VALOBTBKT" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_IRSOnShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier1_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier2_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_OnShore_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_B_MO_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="FichierEquitis_C_MO_Existe" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier_BondsOffShore_Existe" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_BondsTOS" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_SwapOffShore" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_RepoOffShore" />
+        <Variable x:TypeArguments="x:Int32" Name="Count_OPCVMOffShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="Fichier_Equity_OffShore_Existe" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:FileExistsX DisplayName="File Exists" Exists="[Fichier_BondsOffShore_Existe]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_7" Path="[Chemin_Fichier_ClotureBondsOffShore]" />
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">282</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_BondsTOS]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_BondsTOS]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_18" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">282</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_SwapOFFSHORE]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_SwapOffShore]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_19" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">282</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_RepoOffShore]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_RepoOffShore]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Requete_BaseDonnees - Invoke Workflow File (Requete_BaseDonnees.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_20" UnSafe="False" WorkflowFileName="Requete_BaseDonnees.xaml">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Etat">282</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_DataBase_Table">[in_Table_OPCVM_OffShore]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="out_Count">[Count_OPCVMOffShore]</OutArgument>
+          <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="in_Connexion">[DataBaseConnection]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_Date_JJMMYYYY">[Date_JJ_MM_YYYY]</InArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:FileExistsX DisplayName="File Exists" Exists="[Fichier_Equity_OffShore_Existe]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_9" Path="[Chemin_Fichier_ClotureEquityOffShore]" />
+      <If Condition="[Fichier_BondsOffShore_Existe and Fichier_Equity_OffShore_Existe and Count_BondsTOS&gt;0 and Count_RepoOffShore&gt;0 and Count_SwapOffShore&gt;0 and Count_OPCVMOffShore&gt;0]" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT288").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="vérification prérequis Etat288_PV" sap:VirtualizedContainerService.HintSize="468,57" sap2010:WorkflowViewState.IdRef="Sequence_34">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="s:String[]" Name="List_CHemin_PV_PretEmprunt_OffShore" />
+        <Variable x:TypeArguments="x:Boolean" Name="FIchier_PV_PretOffShore_Existe" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="470,114" sap2010:WorkflowViewState.IdRef="Assign_40">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[List_CHemin_PV_PretEmprunt_OffShore]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(in_chemin_Input.TrimEnd("\"c)+"\"+Mois_FR+" " + Annee+"\PV",in_Pattern_PV_Pret_OffShore)]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <If Condition="[List_CHemin_PV_PretEmprunt_OffShore.count.equals(0)]" sap:VirtualizedContainerService.HintSize="470,57" sap2010:WorkflowViewState.IdRef="If_15">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,279" sap2010:WorkflowViewState.IdRef="Sequence_37">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_41">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[FIchier_PV_PretOffShore_Existe]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_44">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CHemin_PV_PretOffShore]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,279" sap2010:WorkflowViewState.IdRef="Sequence_38">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_42">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[FIchier_PV_PretOffShore_Existe]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_43">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CHemin_PV_PretOffShore]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[List_CHemin_PV_PretEmprunt_OffShore(0)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <If Condition="[FIchier_PV_PretOffShore_Existe]" sap:VirtualizedContainerService.HintSize="470,383" sap2010:WorkflowViewState.IdRef="If_16">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_39">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_45">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Traitement_A_Faire]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[(Traitement_A_Faire.Trim(","c) + "," + "ETAT288_PV").Trim(","c)]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_40">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="468,219" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="RMU_RapportBAM_Queue">
+      <ui:AddQueueItem.ItemInformation>
+        <InArgument x:TypeArguments="x:String" x:Key="Traitement_A_Faire">[Traitement_A_Faire]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Date_JJ_MM_YYYY">[Date_JJ_MM_YYYY]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_Fichier_B">[Chemin_Fichier_B]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_Fichier_C">[Chemin_Fichier_C]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_Fichier_ClotureBondsOffShore">[Chemin_Fichier_ClotureBondsOffShore]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_Fichier_ClotureEquityOffShore">[Chemin_Fichier_ClotureEquityOffShore]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Date_MoisAA">[Date_MoisAA]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Nom_Support281">[Nom_Support281]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Nom_SpotTerme282">[Nom_SpotTerme282]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Nom_StressTest">[Nom_StressTest]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Nom_FichierB">[Nom_FichierB]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Nom_SupportOffShore">[Nom_SupportOffShore]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Nom_Fichier_BAM">[Nom_Fichier_BAM]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_Fichier_FWDAll">[Chemin_Fichier_FWDAll]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_SpotAll">[Chemin_SpotAll]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_PV_RepoOnShore">[CHemin_PV_RepoOnShore]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_PV_PretEmpruntOnShore">[CHemin_PV_PretEmpruntOnShore]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Chemin_PV_PretEmpruntOffShore">[CHemin_PV_PretOffShore]</InArgument>
+      </ui:AddQueueItem.ItemInformation>
+    </ui:AddQueueItem>
+  </Sequence>
+</Activity>
